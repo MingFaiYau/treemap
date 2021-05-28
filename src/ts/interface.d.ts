@@ -3,3 +3,9 @@ interface ICSSResponsive {
   mobileToFull?: boolean
   flexCenter?: boolean
 }
+
+interface ITreeMapObj {
+  name: string
+  weight: number
+  value: number
+}
