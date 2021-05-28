@@ -6,14 +6,16 @@ import InputContainer from './container/InputContainer'
 
 const Container = styled(RowView)`
   height: 100vh;
-  background:cyan;
 `
 
 const App = () => {
+  const [json, setJSON] = React.useState<string>('')
+  const [rows, setRows] = React.useState<number>(0)
+
   return (
-    <Container mobileToCol={true} flexCenter={true}>
-      <InputContainer />
-      <DisplayContainer />
+    <Container mobileToCol={true}>
+      <InputContainer json={json} setJSON={setJSON} rows={rows} setRows={setRows} />
+      <DisplayContainer json={json} rows={rows} />
     </Container>
   )
 }

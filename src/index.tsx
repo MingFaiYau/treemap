@@ -6,8 +6,7 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
   body {
     padding:0;
-    margin:0;
-    min-width:100vw;
+    margin: 0;
     min-height:100vh;
   }
 `
