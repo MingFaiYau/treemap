@@ -4,8 +4,7 @@ import { TitleText } from '../component/base/Text'
 import { View } from '../component/base/View'
 
 interface DisplayContainerProps {
-  json: string
-  rows: number
+  data?: resultData
 }
 
 const Container = styled(View)`
@@ -15,10 +14,11 @@ const Container = styled(View)`
   background-color: blue;
 `
 
-const DisplayContainer: React.FC<DisplayContainerProps> = () => {
+const DisplayContainer: React.FC<DisplayContainerProps> = ({ data }) => {
   return (
     <Container flexCenter={true}>
       <TitleText>Result:</TitleText>
+      {data && <div>{data.rows}</div>}
     </Container>
   )
 }

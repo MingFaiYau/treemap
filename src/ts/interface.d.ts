@@ -9,3 +9,8 @@ interface ITreeMapObj {
   weight: number
   value: number
 }
+
+interface resultData {
+  treeMap: ITreeMapObj[]
+  rows: number
+}

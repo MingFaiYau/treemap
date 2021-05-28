@@ -7,9 +7,10 @@ export const checkJSONFormat = (json: string) => {
       Array.isArray(jsonToArray) &&
       isLengthValid(jsonToArray) &&
       isNameValid(jsonToArray) &&
-      isWeightValid(jsonToArray)
+      isWeightValid(jsonToArray) &&
+      isValueValid(jsonToArray)
     )
-      return true
+      return jsonToArray
   } catch (ex) {}
   return false
 }
@@ -26,6 +27,25 @@ export const isNameValid = (array: ITreeMapObj[]) => {
 
 export const isWeightValid = (array: ITreeMapObj[]) => {
   return !array.some((val) => {
+    return typeof val.weight !== 'number'
+  })
+}
+
+export const isValueValid = (array: ITreeMapObj[]) => {
+  return !array.some((val) => {
     return typeof val.value !== 'number'
   })
+}
+
+export const isNumber = (input: string) => {
+  try {
+    return (
+      !Array.from(input).some((val) => {
+        const num = parseInt(val, 10)
+        return typeof num !== 'number' || isNaN(num)
+      }) && parseInt(input, 10) > 0
+    )
+  } catch (ex) {
+    return false
+  }
 }
