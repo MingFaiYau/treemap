@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { TreeMapItemText } from '../base/Text'
 import { View } from '../base/View'
 import color from '../../utils/color'
+import { convertValueToPercentage } from '../../utils'
 
 interface ContainerProps {
   weight: number
@@ -23,7 +24,7 @@ const TreeMapItem: React.FC<TreeMapItemProps> = ({ data }) => {
   return (
     <Container weight={data.weight} value={data.value} flexCenter={true}>
       <TreeMapItemText>{data.name}</TreeMapItemText>
-      <TreeMapItemText>{`${data.value}%`}</TreeMapItemText>
+      <TreeMapItemText>{convertValueToPercentage(data.value)}</TreeMapItemText>
     </Container>
   )
 }

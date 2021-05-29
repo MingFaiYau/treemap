@@ -10,7 +10,7 @@ import { MOBILE_WIDTH } from '../utils/constant'
 [
     {
         "name": "A",
-        "value": 1,
+        "value": 0.01,
         "weight": 6
     },
     {
@@ -25,12 +25,12 @@ import { MOBILE_WIDTH } from '../utils/constant'
     },
     {
         "name": "D",
-        "value": 1,
+        "value": 0.1,
         "weight": 2
     },
     {
         "name": "E",
-        "value": -1,
+        "value": -0.01333,
         "weight": 2
     }
 ]

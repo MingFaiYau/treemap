@@ -54,3 +54,30 @@ export const isNumber = (input: string) => {
 export const sortByWeight = (treeMap: ITreeMapObj[]) => {
   return treeMap.sort((a, b) => b.weight - a.weight)
 }
+
+export const convertValueToPercentage = (value: number) => {
+  const percentage = value * 100
+  return `${roundUp(percentage, 2)}%`
+}
+
+export const roundUp = (number: number, dec: number) => {
+  const factor = Math.pow(10, dec)
+  const value = number * factor
+  const [intVal, digVal] = getNumberDetail(value)
+  const result = (parseInt(intVal, 10) + (digVal && digVal !== '0' ? 1 : 0)) / factor
+  return parseFloat(strip(result, dec))
+}
+
+export const strip = (number: number, dec: number) => {
+  const [intVal, digVal] = getNumberDetail(number)
+  if (!digVal || dec <= 0) return intVal
+  if (digVal.length < dec) return `${intVal}.${digVal}`
+  return `${intVal}.${digVal.slice(0, dec)}`
+}
+
+export const getNumberDetail = (number: number) => {
+  const numberToString = number.toString()
+  const intVal = numberToString.split('.')[0]
+  const digValue = numberToString.split('.')[1]
+  return [intVal, digValue]
+}
