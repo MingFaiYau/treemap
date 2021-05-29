@@ -38,6 +38,7 @@ export const isValueValid = (array: ITreeMapObj[]) => {
 }
 
 export const isNumber = (input: string) => {
+  if (!input) return true
   try {
     return (
       !Array.from(input).some((val) => {
@@ -48,4 +49,8 @@ export const isNumber = (input: string) => {
   } catch (ex) {
     return false
   }
+}
+
+export const sortByWeight = (treeMap: ITreeMapObj[]) => {
+  return treeMap.sort((a, b) => b.weight - a.weight)
 }

@@ -11,3 +11,8 @@ export const TitleText = styled(Text)`
   font-weight: bolder;
   margin-bottom: 10px;
 `
+
+export const TreeMapItemText = styled(Text)`
+  font-size: 1rem;
+  font-weight: bolder;
+`

@@ -5,6 +5,36 @@ import { InputAreaWithTitle, InputWithTitle } from '../component/base/Input'
 import { ColView } from '../component/base/View'
 import { isNumber } from '../utils'
 import { MOBILE_WIDTH } from '../utils/constant'
+
+/* mock data
+[
+    {
+        "name": "A",
+        "value": 1,
+        "weight": 6
+    },
+    {
+        "name": "B",
+        "value": -0.02,
+        "weight": 4
+    },
+    {
+        "name": "C",
+        "value": -0.1,
+        "weight": 3
+    },
+    {
+        "name": "D",
+        "value": 1,
+        "weight": 2
+    },
+    {
+        "name": "E",
+        "value": -1,
+        "weight": 2
+    }
+]
+*/
 interface InputContainerProps {
   json: string
   setJSON: (json: string) => void
@@ -38,8 +68,8 @@ const InputContainer: React.FC<InputContainerProps> = ({ json, setJSON, rows, se
   )
 
   return (
-    <Container mobileToFull={true}>
-      <InputAreaWithTitle title='DATA' placeholder='JSON Array' value={json} onChange={onJsonChange} />
+    <Container>
+      <InputAreaWithTitle title='DATA' placeholder='JSON Array' value={json} onChange={onJsonChange} rows={10} />
       <InputWithTitle title='ROWS' placeholder='Rows ( must a positive number )' value={rows} onChange={onRowsChange} />
       <Button text='Submit' onClick={onSubmitClick} />
     </Container>

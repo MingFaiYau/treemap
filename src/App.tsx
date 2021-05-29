@@ -12,7 +12,7 @@ const Container = styled(RowView)`
 const App = () => {
   const [json, setJSON] = React.useState<string>('')
   const [rows, setRows] = React.useState<string>('1')
-  const [data, setData] = React.useState<resultData | undefined>(undefined)
+  const [data, setData] = React.useState<IResultData | undefined>(undefined)
 
   const onSubmitClick = React.useCallback(() => {
     const treeMap = checkJSONFormat(json)

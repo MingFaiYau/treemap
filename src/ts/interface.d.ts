@@ -10,7 +10,9 @@ interface ITreeMapObj {
   value: number
 }
 
-interface resultData {
+interface IResultData {
   treeMap: ITreeMapObj[]
   rows: number
 }
+
+ 

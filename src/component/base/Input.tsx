@@ -36,6 +36,7 @@ export const InputWithTitle: React.FC<InputWithTitleProps> = ({ title, mobileToC
 
 interface InputAreaWithTitleProps extends SelectHTMLAttributes<HTMLTextAreaElement>, ICSSResponsive {
   title: string
+  rows?: number
   type?: string
 }
 

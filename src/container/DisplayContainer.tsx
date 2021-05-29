@@ -2,23 +2,24 @@ import React from 'react'
 import styled from 'styled-components'
 import { TitleText } from '../component/base/Text'
 import { View } from '../component/base/View'
+import TreeMap from '../component/treeMap/TreeMap'
+import { sortByWeight } from '../utils'
 
 interface DisplayContainerProps {
-  data?: resultData
+  data?: IResultData
 }
 
 const Container = styled(View)`
   flex: 1;
   padding: 15px;
   width: 100%;
-  background-color: blue;
 `
 
 const DisplayContainer: React.FC<DisplayContainerProps> = ({ data }) => {
   return (
-    <Container flexCenter={true}>
+    <Container>
       <TitleText>Result:</TitleText>
-      {data && <div>{data.rows}</div>}
+      {data && <TreeMap rows={data.rows} treeMap={sortByWeight(data.treeMap)} />}
     </Container>
   )
 }
