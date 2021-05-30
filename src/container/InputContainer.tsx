@@ -8,7 +8,7 @@ import RowPicker from '../component/input/RowPicker'
 import JsonTable from '../component/jsonTable/JsonTable'
 import { useAppContext } from '../context/AppContext'
 import { isNumber, isPositiveInteger, isNameValid } from '../utils'
-import { MOBILE_WIDTH } from '../utils/constant'
+import { MOBILE_WIDTH, MAX_TREE_MAP_LENGTH } from '../utils/constant'
 
 /* mock data
 [
@@ -50,7 +50,7 @@ const Container = styled(ColView)`
 `
 
 const InputContainer: React.FC<InputContainerProps> = () => {
-  const { insertTreeMap } = useAppContext()
+  const { insertTreeMap, treeMaps } = useAppContext()
 
   const nameInputRef = React.createRef<HTMLInputElement>()
   const valueInputRef = React.createRef<HTMLInputElement>()
@@ -94,6 +94,7 @@ const InputContainer: React.FC<InputContainerProps> = () => {
       weightInputRef.current?.select()
       return
     }
+
     const newTreeMap: ITreeMapObj = {
       id: new Date().getTime(),
       name,
@@ -111,7 +112,7 @@ const InputContainer: React.FC<InputContainerProps> = () => {
       <InputWithTitle title='Name' placeholder='Name ( <= 50 words )' ref={nameInputRef} />
       <InputWithTitle title='Value' placeholder='Value ( number )' ref={valueInputRef} />
       <InputWithTitle title='Weight' placeholder='Weight ( non-zero positive integer )' ref={weightInputRef} />
-      <Button text='Insert' onClick={onInsertTreeMapClick} />
+      <Button text='Insert' onClick={onInsertTreeMapClick} disabled={treeMaps.length >= MAX_TREE_MAP_LENGTH} />
       <RowPicker />
       <JsonTable />
     </Container>
