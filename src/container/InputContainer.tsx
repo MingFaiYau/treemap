@@ -57,9 +57,10 @@ const InputContainer: React.FC<InputContainerProps> = () => {
   const weightInputRef = React.createRef<HTMLInputElement>()
 
   const onInsertTreeMapClick = React.useCallback(() => {
-    const name = nameInputRef.current?.value
-    const value = valueInputRef.current?.value
-    const weight = weightInputRef.current?.value
+    if (!nameInputRef.current || !valueInputRef.current || !weightInputRef.current) return
+    const name = nameInputRef.current.value
+    const value = valueInputRef.current.value
+    const weight = weightInputRef.current.value
     if (!name) {
       alert('Please input the name')
       nameInputRef.current?.focus()
@@ -100,6 +101,8 @@ const InputContainer: React.FC<InputContainerProps> = () => {
       value: parseFloat(value),
     }
     insertTreeMap(newTreeMap)
+    nameInputRef.current.value = weightInputRef.current.value = valueInputRef.current.value = ''
+    nameInputRef.current.focus()
   }, [nameInputRef, valueInputRef, weightInputRef, insertTreeMap])
 
   return (
