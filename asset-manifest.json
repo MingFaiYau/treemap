@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/treemap/static/js/main.ee0e9dde.chunk.js",
+    "main.js": "/treemap/static/js/main.5fc89250.chunk.js",
     "runtime-main.js": "/treemap/static/js/runtime-main.67fd737a.js",
     "static/js/2.2963357e.chunk.js": "/treemap/static/js/2.2963357e.chunk.js",
     "index.html": "/treemap/index.html",
@@ -9,6 +9,6 @@
   "entrypoints": [
     "static/js/runtime-main.67fd737a.js",
     "static/js/2.2963357e.chunk.js",
-    "static/js/main.ee0e9dde.chunk.js"
+    "static/js/main.5fc89250.chunk.js"
   ]
 }
