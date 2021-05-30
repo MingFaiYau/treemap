@@ -12,7 +12,9 @@ const Container = styled.div<ContainerProps>`
   grid-auto-flow: column dense;
   grid-template-rows: ${(props) => `repeat(${props.rows},minmax(5rem,auto))`};
   background-color: ${color.treeMapBG};
-  grid-gap: 1px;
+  border-radius: 10px;
+  padding: 3px;
+  grid-gap: 3px;
 `
 interface TreeMapProps {
   rows: number

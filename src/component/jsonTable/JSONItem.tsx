@@ -1,26 +1,30 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import color from '../../utils/color'
 import { Button } from '../base/Button'
 import { View } from '../base/View'
+
+const itemCss = css`
+  border-style: solid;
+  border-width: 0 0 1px 1px;
+  border-color: black;
+  word-break: break-all;
+  padding: 3px;
+`
 
 const JsonItemText = styled(View).attrs((props) => ({ flexCenter: true }))<{
   isTitle?: boolean
 }>`
   font-size: ${(props) => (props.isTitle ? '1rem' : '.8rem')};
   ${(props) => props.isTitle && `font-weight:bolder`};
-  border-style: solid;
-  border-width: 0 0 1px 1px;
-  word-break: break-all;
-  padding: 3px;
+  ${itemCss}
 `
 
 const RemoveButton = styled(Button)`
   background: ${color.removeButtonBG};
-  padding: 3px;
-  border-style: solid;
-  border-width: 0 0 1px 1px;
+  ${itemCss}
   border-radius: 0;
+  font-weight: bolder;
 `
 
 interface JsonItemProps {

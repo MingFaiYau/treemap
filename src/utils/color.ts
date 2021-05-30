@@ -3,6 +3,6 @@ export default {
   removeButtonBG: 'red',
   treeMapBG: '#d3d3d3',
   treeItemBorder: 'black',
-  treeItemPositiveBG: 'green',
-  treeItemNegativeBG: 'red',
+  treeItemPositiveBG: 'limegreen',
+  treeItemNegativeBG: 'orangered',
 }

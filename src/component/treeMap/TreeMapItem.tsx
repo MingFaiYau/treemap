@@ -13,14 +13,15 @@ interface ContainerProps {
 const Container = styled(View)<ContainerProps>`
   grid-column-start: ${(props) => `span ${props.weight}`};
   background: ${(props) => (props.value > 0 ? color.treeItemPositiveBG : color.treeItemNegativeBG)};
-  border: 1px solid ${color.treeItemBorder};
+  border: 2px solid ${color.treeItemBorder};
+  border-radius: 10px;
 `
 
 const TreeMapItemText = styled(Text)`
   font-size: 1rem;
   font-weight: bolder;
   word-break: break-all;
-  padding: 3px;
+  padding: 5px;
 `
 
 interface TreeMapItemProps {
