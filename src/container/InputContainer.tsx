@@ -5,40 +5,11 @@ import { InputWithTitle } from '../component/base/Input'
 import { TitleText } from '../component/base/Text'
 import { ColView } from '../component/base/View'
 import RowPicker from '../component/input/RowPicker'
-import JsonTable from '../component/jsonTable/JsonTable'
+import JsonTable from '../component/jsonTable/JsonTable2'
 import { useAppContext } from '../context/AppContext'
 import { isNumber, isPositiveInteger, isNameValid } from '../utils'
 import { MOBILE_WIDTH, MAX_TREE_MAP_LENGTH } from '../utils/constant'
 
-/* mock data
-[
-    {
-        "name": "A",
-        "value": 0.01,
-        "weight": 6
-    },
-    {
-        "name": "B",
-        "value": -0.02,
-        "weight": 4
-    },
-    {
-        "name": "C",
-        "value": -0.1,
-        "weight": 3
-    },
-    {
-        "name": "D",
-        "value": 0.1,
-        "weight": 2
-    },
-    {
-        "name": "E",
-        "value": -0.01333,
-        "weight": 2
-    }
-]
-*/
 interface InputContainerProps {}
 
 const Container = styled(ColView)`

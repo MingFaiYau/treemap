@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useAppContext } from '../../context/AppContext'
 
-import JsonItem from './JsonItem'
+import JsonItem from './JsonItem1'
 
 const Container = styled.div`
   width: 100%;
