@@ -25,9 +25,9 @@ const RowPicker: React.FC<RowPickerProps> = () => {
   return (
     <Container flexCenter={true}>
       <InputText>Rows:</InputText>
-      <ActionButton text='+' left onClick={addRows} disabled={!allowAdd} />
+      <ActionButton text='-' left onClick={reduceRows} disabled={!allowReduce} />
       <Input value={rows} disabled />
-      <ActionButton text='-' right onClick={reduceRows} disabled={!allowReduce} />
+      <ActionButton text='+' right onClick={addRows} disabled={!allowAdd} />
     </Container>
   )
 }
