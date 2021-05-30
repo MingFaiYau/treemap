@@ -33,7 +33,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "jest --env=jsdom"
+      "pre-commit": "yarn test"
     }
   },
   "browserslist": {
