@@ -9,7 +9,7 @@ const Container = styled.div`
   margin-top: 15px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 40px 2fr 1fr 1fr 1fr;
   grid-auto-rows: minmax(2rem, auto);
   border-style: solid;
   border-width: 1px 1px 0 0;
@@ -21,14 +21,15 @@ const JsonTable: React.FC<JsonTableProps> = () => {
   const { treeMaps, removeTreeMap } = useAppContext()
   return (
     <Container>
-      <JsonItem name='Name' value='Value' weight='Weight' action='Action' />
-      {treeMaps.map((val) => {
+      <JsonItem idx="No." name='Name' value='Value' weight='Weight' action='Action' />
+      {treeMaps.map((val, idx) => {
         const removeClick = () => {
           removeTreeMap(val.id)
         }
         return (
           <JsonItem
             key={val.id}
+            idx={idx}
             name={val.name}
             value={val.value.toString()}
             weight={val.weight.toString()}

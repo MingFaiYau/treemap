@@ -28,13 +28,14 @@ const RemoveButton = styled(Button)`
 `
 
 interface JsonItemProps {
+  idx: number | string
   name: string
   value: string
   weight: string
   action: string | (() => void)
 }
 
-const JsonItem: React.FC<JsonItemProps> = ({ name, value, weight, action }) => {
+const JsonItem: React.FC<JsonItemProps> = ({ idx, name, value, weight, action }) => {
   const isTitle = typeof action === 'string'
   const actionRender =
     typeof action === 'string' ? (
@@ -44,6 +45,7 @@ const JsonItem: React.FC<JsonItemProps> = ({ name, value, weight, action }) => {
     )
   return (
     <>
+      <JsonItemText isTitle={isTitle}>{typeof idx === 'string' ? idx : idx + 1}</JsonItemText>
       <JsonItemText isTitle={isTitle}>{name}</JsonItemText>
       <JsonItemText isTitle={isTitle}>{value}</JsonItemText>
       <JsonItemText isTitle={isTitle}>{weight}</JsonItemText>
