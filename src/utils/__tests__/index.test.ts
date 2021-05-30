@@ -15,6 +15,12 @@ describe('Test Round Up Function', () => {
     it('PASS, value = 1, expect 1', () => {
       expect(utils.roundUp(1, decimal)).toEqual(1)
     })
+    it('PASS, value = -0.0111, expect -0.02', () => {
+      expect(utils.roundUp(-0.0111, decimal)).toEqual(-0.02)
+    })
+    it('PASS, value = -0.0121, expect -0.02', () => {
+      expect(utils.roundUp(-0.0111, decimal)).toEqual(-0.02)
+    })
   })
 
   describe('decimal is 1', () => {
@@ -30,6 +36,12 @@ describe('Test Round Up Function', () => {
     it('PASS, value = 1, expect 1', () => {
       expect(utils.roundUp(1, decimal)).toEqual(1)
     })
+    it('PASS, value = -0.0111, expect -0.1', () => {
+      expect(utils.roundUp(-0.0111, decimal)).toEqual(-0.1)
+    })
+    it('PASS, value = -0.0121, expect -0.1', () => {
+      expect(utils.roundUp(-0.0111, decimal)).toEqual(-0.1)
+    })
   })
 
   describe('decimal is -2', () => {
@@ -44,6 +56,12 @@ describe('Test Round Up Function', () => {
     })
     it('PASS, value = 1, expect 100', () => {
       expect(utils.roundUp(1, decimal)).toEqual(100)
+    })
+    it('PASS, value = -0.0111, expect -100', () => {
+      expect(utils.roundUp(-0.0111, decimal)).toEqual(-100)
+    })
+    it('PASS, value = -0.0121, expect -100', () => {
+      expect(utils.roundUp(-0.0111, decimal)).toEqual(-100)
     })
   })
 })

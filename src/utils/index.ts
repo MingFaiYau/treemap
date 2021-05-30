@@ -1,7 +1,7 @@
-import { NAME_MAX_LENGTH } from './constant'
+import { MAX_NAME_LENGTH } from './constant'
 
 export const isNameValid = (input: string) => {
-  return input && input.length <= NAME_MAX_LENGTH
+  return input && input.length <= MAX_NAME_LENGTH
 }
 
 export const isNumber = (input: string) => {
@@ -27,9 +27,10 @@ export const convertValueToPercentage = (value: number) => {
 
 export const roundUp = (number: number, dec: number) => {
   const factor = Math.pow(10, dec)
+  const isNev = number < 0
   const value = number * factor
   const [intVal, digVal] = getNumberDetail(value)
-  const result = (parseInt(intVal, 10) + (digVal && digVal !== '0' ? 1 : 0)) / factor
+  const result = (parseInt(intVal, 10) + (digVal && digVal !== '0' ? isNev?-1:1 : 0)) / factor
   return parseFloat(strip(result, dec))
 }
 
