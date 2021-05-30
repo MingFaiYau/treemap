@@ -1,9 +1,8 @@
 import React from 'react'
-import { isNumber } from '../utils'
-
 interface AppContextState {
-  rows: string
-  onRowsChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  rows: number
+  addRows: () => void
+  reduceRows: () => void
   treeMaps: ITreeMapObj[]
   insertTreeMap: (treeMap: ITreeMapObj) => void
   removeTreeMap: (treeMap: ITreeMapObj) => void
@@ -14,23 +13,21 @@ const AppContext = React.createContext<AppContextState | undefined>(undefined)
 export const useAppContext = () => {
   return React.useContext(AppContext) as AppContextState
 }
-
 interface AppContextProps {
   children: React.ReactNode
 }
 
 export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
   const [treeMaps, setTreeMaps] = React.useState<ITreeMapObj[]>([])
-  const [rows, setRows] = React.useState<string>('1')
+  const [rows, setRows] = React.useState<number>(1)
 
-  const onRowsChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (isNumber(e.target.value) && parseInt(e.target.value, 10) <= treeMaps.length) {
-        setRows(e.target.value)
-      }
-    },
-    [treeMaps, setRows],
-  )
+  const addRows = React.useCallback(() => {
+    setRows((prevRows) => (prevRows + 1 > treeMaps.length ? prevRows : prevRows + 1))
+  }, [treeMaps])
+
+  const reduceRows = React.useCallback(() => {
+    setRows((prevRows) => (prevRows - 1 < 1 ? prevRows : prevRows - 1))
+  }, [])
 
   const insertTreeMap = React.useCallback((treeMap: ITreeMapObj) => {
     setTreeMaps((prevTreeMaps) => [...prevTreeMaps, treeMap])
@@ -41,8 +38,8 @@ export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
   }, [])
 
   const value = React.useMemo(() => {
-    return { rows, onRowsChange, treeMaps, insertTreeMap, removeTreeMap }
-  }, [rows, onRowsChange, treeMaps, insertTreeMap, removeTreeMap])
+    return { rows, addRows, reduceRows, treeMaps, insertTreeMap, removeTreeMap }
+  }, [rows, addRows, reduceRows, treeMaps, insertTreeMap, removeTreeMap])
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }

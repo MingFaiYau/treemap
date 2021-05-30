@@ -4,6 +4,7 @@ import { Button } from '../component/base/Button'
 import { InputWithTitle } from '../component/base/Input'
 import { TitleText } from '../component/base/Text'
 import { ColView } from '../component/base/View'
+import RowPicker from '../component/input/RowPicker'
 import { useAppContext } from '../context/AppContext'
 import { isNumber, isPositiveInteger, isNameValid } from '../utils'
 import { MOBILE_WIDTH } from '../utils/constant'
@@ -48,7 +49,7 @@ const Container = styled(ColView)`
 `
 
 const InputContainer: React.FC<InputContainerProps> = () => {
-  const { insertTreeMap, rows, onRowsChange } = useAppContext()
+  const { insertTreeMap } = useAppContext()
 
   const nameInputRef = React.createRef<HTMLInputElement>()
   const valueInputRef = React.createRef<HTMLInputElement>()
@@ -107,12 +108,7 @@ const InputContainer: React.FC<InputContainerProps> = () => {
       <InputWithTitle title='Value' placeholder='Value ( number )' ref={valueInputRef} />
       <InputWithTitle title='Weight' placeholder='Weight ( non-zero positive integer )' ref={weightInputRef} />
       <Button text='Insert' onClick={onInsertTreeMapClick} />
-      <InputWithTitle
-        title='Rows'
-        placeholder='Rows ( non-zero positive integer )'
-        value={rows}
-        onChange={onRowsChange}
-      />
+      <RowPicker />
     </Container>
   )
 }

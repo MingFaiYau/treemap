@@ -19,7 +19,7 @@ const DisplayContainer: React.FC<DisplayContainerProps> = () => {
   return (
     <Container>
       <TitleText>Result</TitleText>
-      <TreeMap rows={parseInt(rows, 10)} treeMap={sortByWeight(treeMaps)} />
+      <TreeMap rows={rows} treeMap={sortByWeight(treeMaps)} />
     </Container>
   )
 }
