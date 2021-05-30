@@ -1,10 +1,10 @@
 import React, { SelectHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
-import { MOBILE_WIDTH } from '../../utils/constant'
-import { TitleText } from './Text'
-import { ColView } from './View'
+import { InputText } from './Text'
+import { RowView } from './View'
 
 const style = css<ICSSResponsive>`
+  border: 1px solid;
   border-radius: 10px;
   padding: 10px;
   :focus {
@@ -13,7 +13,8 @@ const style = css<ICSSResponsive>`
 `
 
 export const Input = styled.input<ICSSResponsive>`
-  ${style}
+  flex: 1;
+  ${style};
 `
 export const InputArea = styled.textarea<ICSSResponsive>`
   ${style}
@@ -25,15 +26,14 @@ interface InputWithTitleProps extends SelectHTMLAttributes<HTMLInputElement>, IC
   type?: string
 }
 
-export const InputWithTitle: React.FC<InputWithTitleProps> = ({ title, mobileToCol, ...props }) => {
-  return (
-    <ColView mobileToCol={mobileToCol} style={{ marginBottom: 15 }}>
-      <TitleText>{`${title} :`}</TitleText>
-      <Input mobileToFull {...props} />
-    </ColView>
-  )
-}
-
+export const InputWithTitle = React.forwardRef<HTMLInputElement, InputWithTitleProps>(
+  ({ title, mobileToCol, ...props }, ref) => (
+    <RowView mobileToCol={mobileToCol} flexCenter style={{ marginBottom: 15 }}>
+      <InputText>{`${title} :`}</InputText>
+      <Input mobileToFull ref={ref} {...props} />
+    </RowView>
+  ),
+)
 interface InputAreaWithTitleProps extends SelectHTMLAttributes<HTMLTextAreaElement>, ICSSResponsive {
   title: string
   rows?: number
@@ -42,9 +42,9 @@ interface InputAreaWithTitleProps extends SelectHTMLAttributes<HTMLTextAreaEleme
 
 export const InputAreaWithTitle: React.FC<InputAreaWithTitleProps> = ({ title, mobileToCol, ...props }) => {
   return (
-    <ColView mobileToCol={mobileToCol} style={{ marginBottom: 15 }}>
-      <TitleText>{`${title} :`}</TitleText>
+    <RowView mobileToCol={mobileToCol} style={{ marginBottom: 15 }}>
+      <InputText>{`${title} :`}</InputText>
       <InputArea mobileToFull {...props} />
-    </ColView>
+    </RowView>
   )
 }

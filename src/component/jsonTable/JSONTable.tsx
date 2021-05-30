@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import color from '../../utils/color'
-import TreeMapItem from './TreeMapItem'
+import JSONItem from './JSONItem'
 
 interface ContainerProps {
   rows: number
@@ -15,19 +15,19 @@ const Container = styled.div<ContainerProps>`
   grid-gap: 1px;
 `
 
-interface TreeMapProps {
+interface JSONTableProps {
   rows: number
   treeMap: ITreeMapObj[]
 }
 
-const TreeMap: React.FC<TreeMapProps> = ({ rows, treeMap }) => {
+const JSONTable: React.FC<JSONTableProps> = ({ rows, treeMap }) => {
   return (
     <Container rows={rows}>
       {treeMap.map((val) => (
-        <TreeMapItem key={val.id} data={val} />
+        <JSONItem key={val.name} data={val} />
       ))}
     </Container>
   )
 }
 
-export default React.memo(TreeMap)
+export default React.memo(JSONTable)

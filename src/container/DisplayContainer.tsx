@@ -3,11 +3,10 @@ import styled from 'styled-components'
 import { TitleText } from '../component/base/Text'
 import { View } from '../component/base/View'
 import TreeMap from '../component/treeMap/TreeMap'
+import { useAppContext } from '../context/AppContext'
 import { sortByWeight } from '../utils'
 
-interface DisplayContainerProps {
-  data?: IResultData
-}
+interface DisplayContainerProps {}
 
 const Container = styled(View)`
   flex: 1;
@@ -15,11 +14,12 @@ const Container = styled(View)`
   width: 100%;
 `
 
-const DisplayContainer: React.FC<DisplayContainerProps> = ({ data }) => {
+const DisplayContainer: React.FC<DisplayContainerProps> = () => {
+  const { treeMaps, rows } = useAppContext()
   return (
     <Container>
-      <TitleText>Result:</TitleText>
-      {data && <TreeMap rows={data.rows} treeMap={sortByWeight(data.treeMap)} />}
+      <TitleText>Result</TitleText>
+      <TreeMap rows={parseInt(rows, 10)} treeMap={sortByWeight(treeMaps)} />
     </Container>
   )
 }
