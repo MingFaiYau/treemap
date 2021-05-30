@@ -23,8 +23,3 @@ export const InputText = styled(Text)`
   text-align: right;
   margin-right: 5px;
 `
-
-export const TreeMapItemText = styled(Text)`
-  font-size: 1rem;
-  font-weight: bolder;
-`

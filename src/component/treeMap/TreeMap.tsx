@@ -10,11 +10,10 @@ interface ContainerProps {
 const Container = styled.div<ContainerProps>`
   display: grid;
   grid-auto-flow: column dense;
-  grid-template-rows: ${(props) => `repeat(${props.rows},5rem)`};
+  grid-template-rows: ${(props) => `repeat(${props.rows},minmax(5rem,auto))`};
   background-color: ${color.treeMapBG};
   grid-gap: 1px;
 `
-
 interface TreeMapProps {
   rows: number
   treeMap: ITreeMapObj[]

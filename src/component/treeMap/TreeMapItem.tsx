@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TreeMapItemText } from '../base/Text'
+import { Text } from '../base/Text'
 import { View } from '../base/View'
 import color from '../../utils/color'
 import { convertValueToPercentage } from '../../utils'
@@ -14,6 +14,13 @@ const Container = styled(View)<ContainerProps>`
   grid-column-start: ${(props) => `span ${props.weight}`};
   background: ${(props) => (props.value > 0 ? color.treeItemPositiveBG : color.treeItemNegativeBG)};
   border: 1px solid ${color.treeItemBorder};
+`
+
+const TreeMapItemText = styled(Text)`
+  font-size: 1rem;
+  font-weight: bolder;
+  word-break: break-all;
+  padding: 3px;
 `
 
 interface TreeMapItemProps {
