@@ -1,32 +1,51 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TreeMapItemText } from '../base/Text'
-import { View } from '../base/View'
 import color from '../../utils/color'
-import { convertValueToPercentage } from '../../utils'
+import { Button } from '../base/Button'
+import { View } from '../base/View'
 
-interface ContainerProps {
-  weight: number
-  value: number
-}
-
-const Container = styled(View)<ContainerProps>`
-  grid-column-start: ${(props) => `span ${props.weight}`};
-  background: ${(props) => (props.value > 0 ? color.treeItemPositiveBG : color.treeItemNegativeBG)};
-  border: 1px solid ${color.treeItemBorder};
+const JsonItemText = styled(View).attrs((props) => ({ flexCenter: true }))<{
+  isTitle?: boolean
+}>`
+  font-size: ${(props) => (props.isTitle ? '1rem' : '.8rem')};
+  ${(props) => props.isTitle && `font-weight:bolder`};
+  border-style: solid;
+  border-width: 0 0 1px 1px;
+  word-break: break-all;
+  padding: 3px;
 `
 
-interface JSONItemProps {
-  data: ITreeMapObj
+const RemoveButton = styled(Button)`
+  background: ${color.removeButtonBG};
+  padding: 3px;
+  border-style: solid;
+  border-width: 0 0 1px 1px;
+  border-radius: 0;
+`
+
+interface JsonItemProps {
+  name: string
+  value: string
+  weight: string
+  action: string | (() => void)
 }
 
-const JSONItem: React.FC<JSONItemProps> = ({ data }) => {
+const JsonItem: React.FC<JsonItemProps> = ({ name, value, weight, action }) => {
+  const isTitle = typeof action === 'string'
+  const actionRender =
+    typeof action === 'string' ? (
+      <JsonItemText isTitle={isTitle}>{action}</JsonItemText>
+    ) : (
+      <RemoveButton text='Remove' onClick={action} />
+    )
   return (
-    <Container weight={data.weight} value={data.value} flexCenter={true}>
-      <TreeMapItemText>{data.name}</TreeMapItemText>
-      <TreeMapItemText>{convertValueToPercentage(data.value)}</TreeMapItemText>
-    </Container>
+    <>
+      <JsonItemText isTitle={isTitle}>{name}</JsonItemText>
+      <JsonItemText isTitle={isTitle}>{value}</JsonItemText>
+      <JsonItemText isTitle={isTitle}>{weight}</JsonItemText>
+      {actionRender}
+    </>
   )
 }
 
-export default React.memo(JSONItem)
+export default React.memo(JsonItem)

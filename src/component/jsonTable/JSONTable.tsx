@@ -1,33 +1,43 @@
 import React from 'react'
 import styled from 'styled-components'
-import color from '../../utils/color'
-import JSONItem from './JSONItem'
+import { useAppContext } from '../../context/AppContext'
 
-interface ContainerProps {
-  rows: number
-}
+import JsonItem from './JsonItem'
 
-const Container = styled.div<ContainerProps>`
+const Container = styled.div`
+  width: 100%;
+  margin-top: 15px;
+  overflow: hidden;
   display: grid;
-  grid-auto-flow: column dense;
-  grid-template-rows: ${(props) => `repeat(${props.rows},5rem)`};
-  background-color: ${color.treeMapBG};
-  grid-gap: 1px;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-auto-rows: minmax(2rem, auto);
+  border-style: solid;
+  border-width: 1px 1px 0 0;
 `
 
-interface JSONTableProps {
-  rows: number
-  treeMap: ITreeMapObj[]
-}
+interface JsonTableProps {}
 
-const JSONTable: React.FC<JSONTableProps> = ({ rows, treeMap }) => {
+const JsonTable: React.FC<JsonTableProps> = () => {
+  const { treeMaps, removeTreeMap } = useAppContext()
   return (
-    <Container rows={rows}>
-      {treeMap.map((val) => (
-        <JSONItem key={val.name} data={val} />
-      ))}
+    <Container>
+      <JsonItem name='Name' value='Value' weight='Weight' action='Action' />
+      {treeMaps.map((val) => {
+        const removeClick = () => {
+          removeTreeMap(val.id)
+        }
+        return (
+          <JsonItem
+            key={val.id}
+            name={val.name}
+            value={val.value.toString()}
+            weight={val.weight.toString()}
+            action={removeClick}
+          />
+        )
+      })}
     </Container>
   )
 }
 
-export default React.memo(JSONTable)
+export default React.memo(JsonTable)

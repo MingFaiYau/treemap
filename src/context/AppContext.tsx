@@ -5,7 +5,7 @@ interface AppContextState {
   reduceRows: () => void
   treeMaps: ITreeMapObj[]
   insertTreeMap: (treeMap: ITreeMapObj) => void
-  removeTreeMap: (treeMap: ITreeMapObj) => void
+  removeTreeMap: (id: number) => void
 }
 
 const AppContext = React.createContext<AppContextState | undefined>(undefined)
@@ -21,6 +21,12 @@ export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
   const [treeMaps, setTreeMaps] = React.useState<ITreeMapObj[]>([])
   const [rows, setRows] = React.useState<number>(1)
 
+  React.useEffect(() => {
+    if (treeMaps.length < rows && rows !== 1) {
+      setRows(treeMaps.length)
+    }
+  }, [treeMaps, rows])
+
   const addRows = React.useCallback(() => {
     setRows((prevRows) => (prevRows + 1 > treeMaps.length ? prevRows : prevRows + 1))
   }, [treeMaps])
@@ -33,8 +39,8 @@ export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
     setTreeMaps((prevTreeMaps) => [...prevTreeMaps, treeMap])
   }, [])
 
-  const removeTreeMap = React.useCallback((treeMap: ITreeMapObj) => {
-    setTreeMaps((prevTreeMaps) => prevTreeMaps.filter((val) => val.name === treeMap.name))
+  const removeTreeMap = React.useCallback((id: number) => {
+    setTreeMaps((prevTreeMaps) => prevTreeMaps.filter((val) => val.id !== id))
   }, [])
 
   const value = React.useMemo(() => {
